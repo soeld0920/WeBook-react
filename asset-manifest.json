@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Webook-react/static/css/main.06548ae1.css",
+    "main.js": "/Webook-react/static/js/main.b2938cad.js",
+    "index.html": "/Webook-react/index.html",
+    "main.06548ae1.css.map": "/Webook-react/static/css/main.06548ae1.css.map",
+    "main.b2938cad.js.map": "/Webook-react/static/js/main.b2938cad.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.06548ae1.css",
+    "static/js/main.b2938cad.js"
+  ]
+}
