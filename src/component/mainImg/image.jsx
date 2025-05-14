@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useImage, useImagePageNum } from "../../context/imagePageNum";
+import { useImage } from "../../context/image";
 
 const ImageUl = styled.ul`
-  width: ${({$images}) => `${$images.length}00vw`};
+  width: ${({$images}) => `${$images.length + 2}00vw`};
   height: 420px;
   display:flex;
   transform: ${({$imagePageNum}) => `translateX(-${$imagePageNum}00vw)`};
-  transition: all 0.5s ease;
+  transition: ${({$transition}) => $transition ? 'all 0.5s ease' : 'none'};
 `
 
 const ImageLi = styled.li`
@@ -25,11 +25,20 @@ const ImageDiv = styled.div`
 `
 
 function Image(){
-  const images = useImage()
-  const {imagePageNum} = useImagePageNum()
+  const {images, imagePageNum, setImagePageNum} = useImage()
+  const newImage = [{...images[images.length - 1], id : 0}, ...images ,{...images[0], id : images.length + 1}]
+
+  useEffect(() => {
+    if(imagePageNum === 0 | imagePageNum === images.length + 1){
+      const timer1 = setTimeout(() => {setImagePageNum(imagePageNum === 0 ? images.length : 1)},500)
+      const timer2 = setTimeout(() => {setImagePageNum(imagePageNum === 0 ? images.length : 1)},500)
+    }
+  },[imagePageNum, images, setImagePageNum])
+  
+
   return(
-    <ImageUl $images={images} $imagePageNum={imagePageNum}>
-      {images.map(image => (
+    <ImageUl $images={images} $imagePageNum={imagePageNum} $transition={true}>
+      {newImage.map(image => (
         <ImageLi key={image.id} $bgcolor={image.bgcolor}>
           <ImageDiv>
             <Link to='/event'>

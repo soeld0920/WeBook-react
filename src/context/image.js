@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react"
 
-const Images = [
+const images = [
   {id : 1, url : '/images/main-img1.png', bgcolor:'#FEF3E0'},
   {id : 2, url : '/images/main-img2.png', bgcolor:'#007C82'},
   {id : 3, url : '/images/main-img3.png', bgcolor:'#CEF8AD'},
@@ -9,26 +9,22 @@ const Images = [
   {id : 6, url : '/images/main-img6.png', bgcolor:'#FFA963'},
 ]
 
-const ImagePageNumContext = createContext()
 const ImageContext = createContext()
 
-export function ImagePageNumProvider({children}){
-  const [imagePageNum, setImagePageNum] = useState(0);
+export function ImageProvider({children}){
+  const [imagePageNum, setImagePageNum] = useState(1);
+  const [isSliding,setIsSliding] = useState(false)
   return(
-    <ImagePageNumContext.Provider value={{imagePageNum, setImagePageNum}}>
-      <ImageContext.Provider value={Images}>
+    <ImageContext.Provider value={
+      {
+        imagePageNum, setImagePageNum,
+        images,
+        isSliding, setIsSliding
+      }
+    }>
         {children}
-      </ImageContext.Provider>
-    </ImagePageNumContext.Provider>
+    </ImageContext.Provider>
   )
-}
-
-export function useImagePageNum(){
-  const context = useContext(ImagePageNumContext)
-  if(!context){
-    throw new Error('useImagePageNum Error')
-  }
-  return context
 }
 
 export function useImage(){

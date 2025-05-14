@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useImage, useImagePageNum } from "../../../context/imagePageNum";
+import { useImage} from "../../../context/image";
 
 const DotDiv = styled.div`
   display: flex;
@@ -21,21 +21,24 @@ const DotButton = styled.button`
 `
 
 function Dots(){
-  const images = useImage()
-  const {imagePageNum} = useImagePageNum()
+  const {images,imagePageNum} = useImage()
+  let imagePageNumCopy = imagePageNum
+  if(imagePageNumCopy === 0 | imagePageNumCopy === images.length + 1){
+    imagePageNumCopy = imagePageNumCopy === 0 ? images.length : 1
+  }
   return(
     <DotDiv>
       {images.map(image => (
-        <Dot $selected={image.id - 1 === imagePageNum} key={image.id} id={image.id}/>
+        <Dot $selected={image.id === imagePageNumCopy} key={image.id} id={image.id}/>
       ))}
     </DotDiv>
   )
 }
 
 function Dot({$selected, id}){
-  const {setImagePageNum} = useImagePageNum()
+  const {setImagePageNum} = useImage()
   return(
-    <DotButton $selected={$selected} onClick={() => setImagePageNum(id - 1)}>●</DotButton>
+    <DotButton $selected={$selected} onClick={() => setImagePageNum(id)}>●</DotButton>
   )
 }
 

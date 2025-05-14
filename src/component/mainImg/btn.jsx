@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { useImage, useImagePageNum } from "../../context/imagePageNum";
+import { useImage} from "../../context/image";
 
 const BtnButton = styled.button`
   position: absolute;
@@ -28,38 +28,20 @@ const NextBtnButton = styled(BtnButton)`
   left: calc(50% + 600px);
 `
 export function PrepBtn(){
-  const images = useImage()
-  const {imagePageNum, setImagePageNum} = useImagePageNum()
-
-  const imagePageDown = () => {
-    if(imagePageNum > 0){
-      setImagePageNum(imagePageNum -1)
-    }else{
-      setImagePageNum(images.length -1)
-    }
-  }
+  const {imagePageNum, setImagePageNum} = useImage()
 
   return(
-    <PrepBtnButton onClick={imagePageDown}>
+    <PrepBtnButton onClick={() => setImagePageNum(imagePageNum -1)}>
       <SlArrowLeft/>
     </PrepBtnButton>
   )
 }
 
 export function NextBtn(){
-  const images = useImage()
-  const {imagePageNum, setImagePageNum} = useImagePageNum()
-
-  const imagePageUp = () => {
-    if(imagePageNum < images.length - 1){
-      setImagePageNum(imagePageNum +1)
-    }else{
-      setImagePageNum(0)
-    }
-  }
+  const {imagePageNum, setImagePageNum} = useImage()
 
   return(
-    <NextBtnButton onClick={imagePageUp}>
+    <NextBtnButton onClick={() => setImagePageNum(imagePageNum +1)}>
       <SlArrowRight/>
     </NextBtnButton>
   )

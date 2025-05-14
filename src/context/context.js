@@ -2,7 +2,7 @@ import React from "react";
 import { TrendingBooksProvider } from "./trendingBooks";
 import { CartInBookNumProvider } from "./cartInBookNum";
 import { SearchCategoryProvider } from "./searchCategory";
-import { ImagePageNumProvider } from "./imagePageNum";
+import { ImageProvider } from "./image";
 
 
 export function Provider({children}){
@@ -10,9 +10,9 @@ export function Provider({children}){
     <TrendingBooksProvider>
       <CartInBookNumProvider>
         <SearchCategoryProvider>
-          <ImagePageNumProvider>
+          <ImageProvider>
             {children}
-          </ImagePageNumProvider>
+          </ImageProvider>
         </SearchCategoryProvider>
       </CartInBookNumProvider>
     </TrendingBooksProvider>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useImage, useImagePageNum } from "../../../context/imagePageNum";
+import { useImage } from "../../../context/image";
 
 const NumP = styled.p`
   width: 100%;
@@ -10,11 +10,14 @@ const NumP = styled.p`
 `
 
 function Num(){
-  const images = useImage()
-  const {imagePageNum} = useImagePageNum()
+  const {images, imagePageNum} = useImage()
+  let imagePageNumCopy = imagePageNum
+  if(imagePageNumCopy === 0 | imagePageNumCopy === images.length + 1){
+    imagePageNumCopy = imagePageNumCopy === 0 ? images.length : 1
+  }
   return(
     <NumP>
-      {`${imagePageNum + 1}/${images.length}`}
+      {`${imagePageNumCopy}/${images.length}`}
     </NumP>
   )
 }
