@@ -28,20 +28,32 @@ const NextBtnButton = styled(BtnButton)`
   left: calc(50% + 600px);
 `
 export function PrepBtn(){
-  const {imagePageNum, setImagePageNum} = useImage()
+  const {imagePageNum, setImagePageNum,isSliding, setIsSliding} = useImage()
+
+  const movePrep = () => {
+    if(isSliding) return
+    setImagePageNum(imagePageNum -1)
+    setIsSliding(true)
+  }
 
   return(
-    <PrepBtnButton onClick={() => setImagePageNum(imagePageNum -1)}>
+    <PrepBtnButton onClick={movePrep}>
       <SlArrowLeft/>
     </PrepBtnButton>
   )
 }
 
 export function NextBtn(){
-  const {imagePageNum, setImagePageNum} = useImage()
+  const {imagePageNum, setImagePageNum,isSliding, setIsSliding} = useImage()
+
+  const moveNext = () => {
+    if(isSliding) return
+    setImagePageNum(imagePageNum +1)
+    setIsSliding(true)
+  }
 
   return(
-    <NextBtnButton onClick={() => setImagePageNum(imagePageNum +1)}>
+    <NextBtnButton onClick={moveNext}>
       <SlArrowRight/>
     </NextBtnButton>
   )

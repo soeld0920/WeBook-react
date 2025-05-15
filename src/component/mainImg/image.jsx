@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useImage } from "../../context/image";
@@ -25,19 +25,45 @@ const ImageDiv = styled.div`
 `
 
 function Image(){
-  const {images, imagePageNum, setImagePageNum} = useImage()
+  const {images, imagePageNum, setImagePageNum, setIsSliding, isSliding} = useImage()
+  const [transition, setTransition] = useState(true)
+  const autoMove = useRef(null)
   const newImage = [{...images[images.length - 1], id : 0}, ...images ,{...images[0], id : images.length + 1}]
 
   useEffect(() => {
+    let t1;
     if(imagePageNum === 0 | imagePageNum === images.length + 1){
-      const timer1 = setTimeout(() => {setImagePageNum(imagePageNum === 0 ? images.length : 1)},500)
-      const timer2 = setTimeout(() => {setImagePageNum(imagePageNum === 0 ? images.length : 1)},500)
+      t1 = setTimeout(() => {
+        setTransition(false);setImagePageNum(imagePageNum === 0 ? images.length : 1)
+        setTimeout(() => {setTransition(true);setIsSliding(false)},100)
+      },500)
+    }else{
+      t1 = setTimeout(() => setIsSliding(false),600)
+
     }
-  },[imagePageNum, images, setImagePageNum])
+
+    return () => {
+      clearTimeout(t1);
+    };
+    
+    },[imagePageNum, images, setImagePageNum, setIsSliding])
   
+  useEffect(() => {
+    if (isSliding) {
+      clearInterval(autoMove.current);
+      return;
+    }
+  
+    autoMove.current = setInterval(() => {
+      setImagePageNum(prev => prev + 1);
+      setIsSliding(true);
+    }, 3500);
+  
+    return () => clearInterval(autoMove.current);
+  }, [isSliding, setImagePageNum, setIsSliding]);
 
   return(
-    <ImageUl $images={images} $imagePageNum={imagePageNum} $transition={true}>
+    <ImageUl $images={images} $imagePageNum={imagePageNum} $transition={transition}>
       {newImage.map(image => (
         <ImageLi key={image.id} $bgcolor={image.bgcolor}>
           <ImageDiv>

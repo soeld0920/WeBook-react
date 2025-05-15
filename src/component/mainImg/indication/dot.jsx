@@ -36,9 +36,15 @@ function Dots(){
 }
 
 function Dot({$selected, id}){
-  const {setImagePageNum} = useImage()
+  const {imagePageNum,setImagePageNum, isSliding, setIsSliding} = useImage()
+  const moveDot = () => {
+    if(!isSliding && imagePageNum !== id){
+      setImagePageNum(id)
+      setIsSliding(true)
+  }
+  }
   return(
-    <DotButton $selected={$selected} onClick={() => setImagePageNum(id)}>●</DotButton>
+    <DotButton $selected={$selected} onClick={moveDot}>●</DotButton>
   )
 }
 
