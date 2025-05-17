@@ -1,20 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-const AdP = styled.p`
-  font-size: 16px;
-  font-weight: 700;
-  color: #777;
-`
+import { LinkText } from "../../source/text";
 
 function Ad(){
   return(
-    <AdP>
-      <Link to='/event'>
-        신학기 기념 20-80% 특가!
-      </Link>
-    </AdP>
+    <LinkText to='/event' $fontSize={4} $fontWeight={700} $color={'#777'}>
+      신학기 기념 20-80% 특가!
+    </LinkText>
   )
 }
 

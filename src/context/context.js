@@ -3,6 +3,10 @@ import { TrendingBooksProvider } from "./trendingBooks";
 import { CartInBookNumProvider } from "./cartInBookNum";
 import { SearchCategoryProvider } from "./searchCategory";
 import { ImageProvider } from "./image";
+import { TodayBooksProvider } from "./todayBook";
+import { FeatureBooksProvider } from "./featureBook";
+import { NewBooksProvider } from "./newBook";
+import { BARProvider } from "./BAR";
 
 
 export function Provider({children}){
@@ -11,7 +15,15 @@ export function Provider({children}){
       <CartInBookNumProvider>
         <SearchCategoryProvider>
           <ImageProvider>
-            {children}
+            <TodayBooksProvider>
+              <FeatureBooksProvider>
+                <NewBooksProvider>
+                  <BARProvider>
+                    {children}
+                  </BARProvider>
+                </NewBooksProvider>
+              </FeatureBooksProvider>
+            </TodayBooksProvider>
           </ImageProvider>
         </SearchCategoryProvider>
       </CartInBookNumProvider>

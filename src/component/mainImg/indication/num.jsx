@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useImage } from "../../../context/image";
+import { Text } from "../../source/text";
 
-const NumP = styled.p`
+const NumText = styled(Text)`
   width: 100%;
   height: 16px;
-  font-size: 16px;
   color: #333;
 `
 
@@ -16,9 +16,9 @@ function Num(){
     imagePageNumCopy = imagePageNumCopy === 0 ? images.length : 1
   }
   return(
-    <NumP>
+    <NumText $fontSize={4}>
       {`${imagePageNumCopy}/${images.length}`}
-    </NumP>
+    </NumText>
   )
 }
 

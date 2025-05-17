@@ -1,7 +1,7 @@
 import React from "react";
 import { useCartInBookNum } from "../../../../context/cartInBookNum";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { LinkText} from "../../../source/text";
 
 const loginNavList = [
   {
@@ -31,15 +31,14 @@ const loginNavList = [
 ]
 
 const LoginLi = styled.li`
-  color: #333;
-  font-size: 18px;
+  display: flex;
   &:after{
     content: '|';
     margin: 0px 5px;
   }
   &:last-child:after{
-    content: none;
-    margin: none;
+    content: '';
+    margin: 0;
   }
 `
 
@@ -48,9 +47,9 @@ function LoginList(){
   return(
     loginNavList.map(loginNav => (
       <LoginLi key={loginNav.id}>
-        <Link to={loginNav.url}>
+        <LinkText to={loginNav.url} $fontSize={3}>
           {loginNav.id === 5 ? `장바구니(${cartInBookNum.current})` : loginNav.text}
-        </Link>
+        </LinkText>
       </LoginLi>
     ))
   )

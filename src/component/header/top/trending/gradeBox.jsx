@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Text } from "../../../source/text";
 
 
 const TrendingGradeDiv = styled.div`
@@ -7,7 +8,6 @@ const TrendingGradeDiv = styled.div`
   height: 25px;
   background-color: #A0522D;
   color: #fff;
-  font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,7 @@ function TrendingGrade({book}){
   return(
     <>
       <TrendingGradeDiv>
-        {book.id}
+        <Text $fontSize={2} $color={'#fff'}>{book.id}</Text>
       </TrendingGradeDiv>
     </>
   )
