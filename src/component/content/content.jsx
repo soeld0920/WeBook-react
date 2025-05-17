@@ -5,6 +5,8 @@ import Feature from "./feature/feature";
 import Ad from "./ad/ad";
 import New from "./new/new";
 import BAR from "./bestseller&recommand/BAR";
+import Personal from "./personal/personal";
+import Author from "./author/author";
 
 const ContentSection = styled.section`
   & > *{
@@ -21,6 +23,8 @@ function Content(){
       <New/>
       <BAR/>
       <Ad/>
+      <Personal/>
+      <Author/>
     </ContentSection>
   )
 }

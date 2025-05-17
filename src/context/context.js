@@ -7,6 +7,8 @@ import { TodayBooksProvider } from "./todayBook";
 import { FeatureBooksProvider } from "./featureBook";
 import { NewBooksProvider } from "./newBook";
 import { BARProvider } from "./BAR";
+import { PersonalBooksProvider } from "./personal";
+import { AuthorProvider } from "./author";
 
 
 export function Provider({children}){
@@ -19,7 +21,11 @@ export function Provider({children}){
               <FeatureBooksProvider>
                 <NewBooksProvider>
                   <BARProvider>
-                    {children}
+                    <PersonalBooksProvider>
+                      <AuthorProvider>
+                        {children}
+                      </AuthorProvider>
+                    </PersonalBooksProvider>
                   </BARProvider>
                 </NewBooksProvider>
               </FeatureBooksProvider>

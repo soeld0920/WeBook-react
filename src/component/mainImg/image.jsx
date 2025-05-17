@@ -39,7 +39,6 @@ function Image(){
       },500)
     }else{
       t1 = setTimeout(() => setIsSliding(false),600)
-
     }
 
     return () => {
