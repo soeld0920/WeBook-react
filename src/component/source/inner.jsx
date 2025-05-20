@@ -7,6 +7,7 @@ const Inner = styled.div`
   display: ${({$flex = true}) => $flex ? 'flex' : 'block'};
   justify-content: ${({$isJustify}) => $isJustify || 'space-between'};
   align-items: ${({$align = true}) => $align ? 'center' : 'unset'};;
+  flex-wrap: ${({$flexWrap = false}) => $flexWrap ? 'wrap' : 'nowrap'};;
 `
 
 export default Inner

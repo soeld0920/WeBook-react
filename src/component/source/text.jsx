@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const fontLevel = ['0px','25px','20px','18px','16px','14px']
+const fontLevel = ['0px','25px','20px','18px','16px','14px','12px']
 
 const TitleText = styled.h3`
   color: ${({$color}) => $color || '#333'};
